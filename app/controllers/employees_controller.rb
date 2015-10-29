@@ -10,6 +10,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
+    @employee = Employee.find(params[:id])
   end
 
   # GET /employees/new
@@ -60,6 +61,23 @@ class EmployeesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def login_verify
+    success = Employee.all.where(name: params[:name], password: params[:password]).first
+  
+    if success
+      session[:employee_id] = success.id
+      redirect_to employee_path(success.id)
+
+    else 
+      redirect_to '/login?error=BADUSERNAMEANDPASSWORD'
+  end
+end
+def logout
+   session.clear
+    redirect_to "/", notice: 'Employee was successfully logged out.'
+  end 
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

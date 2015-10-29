@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<% if session[:employee_id] %>
 <p>
   <strong>Name:</strong>
   <%= @employee.name %>
@@ -12,3 +13,8 @@
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>
+
+<% else %>
+<p>You are not logged in...</p>
+
+<% end %>
