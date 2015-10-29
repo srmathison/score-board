@@ -1,0 +1,12 @@
+<p id = "notice"><%= notice %></p>
+<%= form_tag '/login_verify' do  %>
+
+	<%= label_tag "name" %>
+	<%= text_field_tag "name" %>
+	<%= label_tag "password" %>
+	<%= password_field_tag "password" %>
+
+	<%= submit_tag "SUBMIT" %>
+
+
+<% end %>
